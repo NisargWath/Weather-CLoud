@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <!-- Navbar Of App -->
+    {{>header}}
+
+
+    <!-- Main Of App -->
+    <div class="container-fluid main_header">
+
+        <div class="col-md-10 col-11 mx-auto ">
+            <div class="main_content">
+                <form action="" class="temp_from">
+                    <input type="text" id="cityName" placeholder="Enter Your City Name" autocomplete="off"  ><br>
+                    <input type="submit" value="search" id="submitBtn">
+                </form>
+            </div>
+            <div class="tempInformation">
+                <div class="top_layer date">
+                    <p id="day">Tuesday</p>
+                    <p id="today_date">27 oct</p>
+                </div>
+                <div class="main_layer">
+                    <p class="city_name" id="city_Name">Get output</p>
+                    <div class="middle_layer data_hide">
+                        <p id="temp"><span id="tempra">0</span> <sup>o</sup>C</p>
+                        <p id="temp_status"><i class="fa fa-cloud" aria-hidden="true"></i> </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- footer Part  -->
+
+    <div class="container fixed-bottom">
+        <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <img src="./Blue Complex Cloud Logo.png" class="bi" width="60" height="64">
+                </a>
+                <h5 class="mb-3 mb-md-0 text-center text-primary">© 2022 Nisarg Wath, Inc</h5>
+            </div>
+
+
+        </footer>
+    </div>
+
+    
+    <script src="/public/js/main.js"></script>
+
+<script>
+    const submitBtn = document.getElementById('submitBtn');
+    const cityName = document.getElementById('cityName');
+    const city_Name = document.getElementById('city_Name');
+    const temp_status = document.getElementById('temp_status');
+    const tempra = document.getElementById('tempra');
+       
+
+    
+    const curDate = document.getAnimations("date");
+    let weathercon = document.getElementById("wheathercon");
+
+
+    const getInfo = async(event) => {
+        event.preventDefault();
+        let cityVal = cityName.value;
+        if (cityVal == "") {
+            city_Name.innerText = `plz Enter the name of the city before search`
+        } else {
+            try {
+                let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metric&appid=6aa9766f279043e9c60e6cec742ab4f8`
+                const responce = await fetch(url);
+                const data =  await responce.json();
+                const arrData = [data]
+                city_Name.innerText = `${arrData[0].name}  ${arrData[0].sys.country}` ;
+                tempra.innerText = arrData[0].main.temp;
+            
+                const tempMood = arrData[0].weather[0].main;
+                if(tempMood == "Clear")
+                {
+                    temp_status.innerHTML = 
+                    "<i class='fas fa-sun' style='color:#eccc68;' ></i>";
+                }
+                else if(tempMood == "Clouds")
+                {
+                    temp_status.innerHTML = 
+                    "<i class='fas fa-cloud' style='color:#eccc68;' ></i>";
+                }
+                else if(tempMood == "Rain")
+                {
+                    temp_status.innerHTML = 
+                    "<i class='fas fa-cloud-rain' style='color:#eccc68;' ></i>";
+                }
+                else{
+                    temp_status.innerHTML = 
+                    "<i class='fas fa-sun' style='color:#eccc68;' ></i>";
+                }
+
+                            
+                        } catch {
+                            city_Name.innerText = `Plz Enter the city Name properly`
+                
+                        }
+                    }
+
+
+    }
+    submitBtn.addEventListener('click', getInfo);
+
+
+
+
+
+
+    const getCurrentDay = () => {
+        var week = new Array(7);
+        week[0] = "Sunday";
+        week[1] = "Monday";
+        week[2] = "Tuesday";
+        week[3] = "Wedesday";
+        week[4] = "Thursday";
+        week[5] = "Friday";
+        week[3] = "Saturday";
+        let currentDay = new Date();
+        let day = week[currentDay.getDay()];
+        return day;
+    }
+
+    const getCurrentTime = () => {
+
+        var months = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sept",
+            "Oct",
+            "Nov",
+            "Dec",
+
+        ];
+
+        let now = new Date();
+        var month = months[now.getMonth()];
+        var date = now.getDate();
+
+        let hours = now.getHours();
+        let mins = now.getMinutes();
+        let perious = "AM";
+
+        if (hours > 11) {
+            perious = "PM";
+            if (hours > 12) hours -= 12;
+        }
+        if (mins < 10) {
+            mins = "0" + mins;
+        }
+        console.log(month + "/" + date);
+
+        return `${month}  ${date} |  ${hours}:${mins} ${perious}`;
+    };
+
+    today_date.innerHTML = getCurrentTime();
+    day.innerHTML = getCurrentDay() ;
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Jost", sans-serif;
+}
+
+body {
+    color: red;
+    background: black;
+}
+
+.inner {
+    overflow: hidden;
+}
+
+.inner img {
+    transition: all 1.5s ease;
+}
+
+.inner:hover img {
+    transform: scale(1.5);
+}
+
+html {
+    font-size: 80.5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-bg: #1e272e;
+    --main-color: #0097e6;
+}
+
+.main_menu {
+    background-color: var(--main-bg);
+}
+
+.navbar {
+    color: #fff;
+    background-color: var(--main-bg);
+}
+
+.navbar li {
+    margin-left: 1.8rem;
+}
+
+.navbar a {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.navbar-toggler {
+    background-color: green;
+}
+
+.main_header_left {
+    height: 42rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.main_header_right {
+    height: 42rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+    .main_header_left {
+        height: auto;
+        margin: 5rem 0;
+    }
+    .main_header_right {
+        height: auto;
+        margin: 3rem;
+    }
+    .temp_from {
+        width: auto;
+    }
+    .tempInformation {
+        width: auto;
+    }
+    .temp_from input[type="submit"] {
+        position: absolute;
+        bottom: 5px;
+        /* right: 5px; */
+        top: 5px;
+        border: none;
+        background-color: #0097e6;
+        color: white;
+        padding: 0 2rem;
+        border-radius: 3rem;
+        font-size: 1.6rem;
+    }
+}
+
+footer {
+    width: 100%;
+    margin-top: auto;
+}
+
+.temp_from {
+    position: relative;
+    width: 6 0%;
+    margin: 10rem auto 6rem;
+}
+
+.temp_from input[type="text"] {
+    width: 100%;
+    padding: 2rem 5rem 2rem 2rem;
+    background-color: #1e272e;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    border-radius: 3rem;
+}
+
+::placeholder {
+    color: blanchedalmond;
+}
+
+.temp_from input[type="submit"] {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    top: 5px;
+    border: none;
+    background-color: #0097e6;
+    color: white;
+    padding: 0 2rem;
+    border-radius: 3rem;
+    font-size: 1.6rem;
+}
+
+.temp_from input[type="submit"] :hover {
+    color: #0097e6;
+    background-color: #fff;
+}
+
+.tempInformation {
+    width: 25rem;
+    margin: auto;
+    min-height: 20rem;
+    background-color: #1e272e;
+    border-radius: 1.2rem;
+    padding: 1rem;
+}
+
+.top_layer {
+    width: 100%;
+    height: 20%;
+    background-color: #1e272e;
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0;
+}
+
+.top_layer p {
+    color: #fff;
+    font-weight: 300;
+}
+
+.main_layer {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main_layer #city_name {
+    padding: 2rem 0;
+    color: beige;
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+.main_layer .middle_layer {
+    display: flex;
+    justify-content: space-around;
+    columns: #fff;
+}
+
+.main_layer .middle_layer p,
+.main_layer .middle_layer .fa {
+    font-size: 4rem;
+    color: #fff;
+    font-weight: 800;
+}
+
+.fa {
+    color: #0097e6;
+}
+
+.sup {
+    font-size: 18px;
+    margin-top: -2rem;
+}
+
+.data_hide {
+    /* visibility: hidden;
+    transition: all 0.3s linear; */
+}
+
+.city_name {
+    color: #fff;
+    font-size: 22px;
+}
